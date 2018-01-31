@@ -6,14 +6,13 @@ set -e
 
 BUILD_DIR=$1
 
-ls $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
-echo '->'
-ls $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig
- 
+topic "Rewrite package-config files" 
 mkdir -p $BUILD_DIR/.heroku/vendor/lib/pkg-config
 sed -e "s%/usr%/app/.apt/usr%" -e "s%Cflags:%Cflags: -I\${includedir}/x86_64-linux-gnu%" -e "s%Libs:%Libs: -L\${libdir}%" < $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig/libssl.pc > $BUILD_DIR/.heroku/vendor/lib/pkg-config/libssl.pc
 sed -e "s%/usr%/app/.apt/usr%" -e "s%Cflags:%Cflags: -I\${includedir}/x86_64-linux-gnu%" -e "s%Libs:%Libs: -L\${libdir}%" < $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig/libcrypto.pc > $BUILD_DIR/.heroku/vendor/lib/pkg-config/libcrypto.pc
 sed -e "s%/usr%/app/.apt/usr%" -e "s%Cflags:%Cflags: -I\${includedir}/x86_64-linux-gnu%" -e "s%Libs:%Libs: -L\${libdir}%" < $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig/openssl.pc > $BUILD_DIR/.heroku/vendor/lib/pkg-config/openssl.pc
+
+topic "Copying lib files"
 mkdir -p $BUILD_DIR/.heroku/vendor/lib
 cp $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libssl* $BUILD_DIR/.heroku/vendor/lib
 cp $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libcrypto* $BUILD_DIR/.heroku/vendor/lib
