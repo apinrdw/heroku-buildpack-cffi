@@ -6,8 +6,6 @@ set -e
 
 BUILD_DIR=$1
 
-echo '-----> Rewriting libssl.pc'
-mkdir -p $BUILD_DIR/.heroku/vendor/lib/pkg-config
-sed -e "s%/usr%/app/.apt/usr%" -e "s%Cflags:%Cflags: -I\${includedir}/x86_64-linux-gnu%" -e "s%Libs:%Libs: -L\${libdir}%" < $BUILD_DIR/.apt/usr/lib/pkgconfig/libssl.pc > $BUILD_DIR/.heroku/vendor/lib/pkg-config/libssl.pc
+ls $BUILD_DIR/.apt/usr/lib/libssl*
 mkdir -p $BUILD_DIR/.heroku/vendor/lib
 cp $BUILD_DIR/.apt/usr/lib/libssl* $BUILD_DIR/.heroku/vendor/lib
