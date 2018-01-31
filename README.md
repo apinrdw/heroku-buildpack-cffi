@@ -1,9 +1,5 @@
-heroku-buildpack-cffi
+heroku-buildpack-ssl
 =====================
-
-**Support for this is now included in the main Python buildpack. This is only up for legacy reasons. Please don't use it.**
-
-A helper buildpack to get CFFI and projects that use it working on Heroku.
 
 Usage
 -----
@@ -19,21 +15,15 @@ Create the `.buildpacks` config for buildpack-multi:
 ```bash
 $ cat .buildpacks
 https://github.com/ddollar/heroku-buildpack-apt
-https://github.com/coderanger/heroku-buildpack-cffi
-https://github.com/heroku/heroku-buildpack-python
+https://github.com/coderanger/heroku-buildpack-ssl
 ```
 
 And then create the `Aptfile` config for buildpack-apt:
 
 ```bash
 $ cat Aptfile
-libffi-dev
+libssl-dev
 ```
-
-Then just put the Python libraries you need in the normal `requirements.txt`.
-
-If you are building CFFI for Cryptography, no additional configuration should be
-required.
 
 License
 -------
