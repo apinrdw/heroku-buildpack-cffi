@@ -6,6 +6,6 @@ set -e
 
 BUILD_DIR=$1
 
-ls $BUILD_DIR/.apt/usr/lib/
+ls $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
 mkdir -p $BUILD_DIR/.heroku/vendor/lib
 cp $BUILD_DIR/.apt/usr/lib/libssl* $BUILD_DIR/.heroku/vendor/lib
