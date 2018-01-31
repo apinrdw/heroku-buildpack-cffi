@@ -6,6 +6,10 @@ set -e
 
 BUILD_DIR=$1
 
+function topic() {
+  echo "-----> $*"
+}
+
 topic "Rewrite package-config files" 
 mkdir -p $BUILD_DIR/.heroku/vendor/lib/pkg-config
 sed -e "s%/usr%/app/.apt/usr%" -e "s%Cflags:%Cflags: -I\${includedir}/x86_64-linux-gnu%" -e "s%Libs:%Libs: -L\${libdir}%" < $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig/libssl.pc > $BUILD_DIR/.heroku/vendor/lib/pkg-config/libssl.pc
