@@ -17,4 +17,3 @@ sed -e "s%/usr%/app/.apt/usr%" -e "s%Cflags:%Cflags: -I\${includedir}/x86_64-lin
 mkdir -p $BUILD_DIR/.heroku/vendor/lib
 cp $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libssl* $BUILD_DIR/.heroku/vendor/lib
 cp $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libcrypto* $BUILD_DIR/.heroku/vendor/lib
-cp $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/openssl* $BUILD_DIR/.heroku/vendor/lib
